@@ -48,6 +48,7 @@ function ttfmake_option_defaults() {
     'font-site-title-size'                     => 34,
     'font-site-tagline-size'                   => 12,
     'font-nav-size'                            => 22,
+    'font-size-subnav'                         => 16,
     'font-header-size'                         => 50,
     'font-widget-size'                         => 16,
     'font-body-size'                           => 19,
