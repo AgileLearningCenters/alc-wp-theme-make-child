@@ -222,7 +222,7 @@ h2 strong, h2 b {
         float: left;
     }
 
-    .site-header.shrink .custom-logo a { padding-bottom:0; }
+    .site-header.shrink .custom-logo a { padding-bottom:60px; }
 
     .site-header.shrink .site-navigation {
         height: 60px;
