@@ -28,5 +28,12 @@
     return window.pageYOffset || document.documentElement.scrollTop;
   }
 
+  // After arrow color functionality, see .after-arrow in style.css
+
+  $('.after-arrow').each(function(){
+    var backgroundColor = $(this).css('backgroundColor');
+    $(this).css('borderColor',backgroundColor);
+  });
+
 })(jQuery);
 
