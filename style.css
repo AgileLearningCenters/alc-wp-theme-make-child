@@ -160,6 +160,11 @@ h2 strong, h2 b {
         -webkit-transition: height 0.5s;
                 transition: height 0.5s;
     }
+
+    body.boxed .site-wrapper .site-header {
+        max-width: 1144px;
+    }
+    
     .site-header.shrink {
         z-index: 102;
     }
