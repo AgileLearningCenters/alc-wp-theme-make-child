@@ -153,7 +153,6 @@ h6 {
 
     .site-header {
         position: fixed;
-        margin-bottom: 60px;
         z-index: 100;
         -webkit-transition: height 0.5s;
                 transition: height 0.5s;
@@ -204,6 +203,10 @@ h6 {
 
     .site-header.shrink .site-title {
         white-space: nowrap;
+    }
+
+    .site-header.shrink .custom-logo + .site-title {
+        display: none;
     }
     .site-header.shrink .site-description {
         display: none;
