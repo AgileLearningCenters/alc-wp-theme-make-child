@@ -106,33 +106,31 @@ width: 200px;
     font-style: normal;
 }
 
-body {
-    /* Fix for webkit rendering */
-    font: 19px/1.25 "bk samuelsno5", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    color: #444;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-}
-
-h1, h3, h4, h5, h6 {
-    font-family: "bk samuelsno5", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 200;
-}
-
-h2 {
-    font-family: "bk samuelsno5", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-}
-
-h2 strong, h2 b {
-    font-weight: 900;
+body,
+button,
+input,
+select,
+textarea {
+    color: #171717;
+    font-family: "bk samuelsno5", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
 }
 
 .site-title {
-    font-family: "bk samuelsno5", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "bk samuelsno5", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    clear: both;
+    margin: 11px 0;
+    margin: 1.1rem 0;
+    font-family: "bk samuelsno5", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 
 .site-footer .site-info {
@@ -204,7 +202,9 @@ h2 strong, h2 b {
         overflow: hidden;
     }
 
-    .site-header.shrink .site-title,
+    .site-header.shrink .site-title {
+        white-space: nowrap;
+    }
     .site-header.shrink .site-description {
         display: none;
         /*font-size: 0;*/

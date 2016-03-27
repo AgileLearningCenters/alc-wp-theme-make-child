@@ -13,6 +13,16 @@ wp_enqueue_script(
     true
 );
 
+function alc_custom_fonts($choices){
+    $choices['bk-samuelsno5'] = array(
+        'label' => __( 'Brooklyn Samuel Num 5', 'make' ),
+        'stack' => '"bk samuelsno5","Helvetica Neue",Helvetica,Arial,sans-serif'
+    );
+    return $choices;
+}
+
+add_filter('make_get_standard_fonts', 'alc_custom_fonts');
+
 function alc_default_settings($defaults) {
   $alc_defaults = array(
     // Site Title & Tagline
@@ -158,7 +168,190 @@ function alc_default_settings($defaults) {
     'footer-background-image'                  => 'http://agilelearningcenters.org/wp-content/uploads/2014/07/alc_smile_logo.png',
     'footer-background-repeat'                 => 'no-repeat',
     'footer-background-position'               => 'center',
-    'footer-background-size'                   => 'contain'
+    'footer-background-size'                   => 'contain',
+
+    /**
+     * Typography
+     */
+    // Global/Default
+      'font-family-body'                         => 'bk-samuelsno5',
+    'font-size-body'                           => 17,
+    'font-weight-body'                         => 'normal',
+    'font-style-body'                          => 'normal',
+    'text-transform-body'                      => 'none',
+    'line-height-body'                         => (float) 1.6,
+    'letter-spacing-body'                      => (float) 0,
+    'word-spacing-body'                        => (float) 0,
+    'link-underline-body'                      => 'never',
+    // Links
+    'font-weight-body-link'                    => 'bold',
+    // H1
+    'font-family-h1'                           => 'sans-serif',
+    'font-size-h1'                             => 46,
+    'font-weight-h1'                           => 'normal',
+    'font-style-h1'                            => 'normal',
+    'text-transform-h1'                        => 'none',
+    'line-height-h1'                           => (float) 1.2,
+    'letter-spacing-h1'                        => (float) 0,
+    'word-spacing-h1'                          => (float) 0,
+    'link-underline-h1'                        => 'never',
+    // H2
+    'font-family-h2'                           => 'sans-serif',
+    'font-size-h2'                             => 34,
+    'font-weight-h2'                           => 'bold',
+    'font-style-h2'                            => 'normal',
+    'text-transform-h2'                        => 'none',
+    'line-height-h2'                           => (float) 1.6,
+    'letter-spacing-h2'                        => (float) 0,
+    'word-spacing-h2'                          => (float) 0,
+    'link-underline-h2'                        => 'never',
+    // H3
+    'font-family-h3'                           => 'sans-serif',
+    'font-size-h3'                             => 24,
+    'font-weight-h3'                           => 'bold',
+    'font-style-h3'                            => 'normal',
+    'text-transform-h3'                        => 'none',
+    'line-height-h3'                           => (float) 1.6,
+    'letter-spacing-h3'                        => (float) 0,
+    'word-spacing-h3'                          => (float) 0,
+    'link-underline-h3'                        => 'never',
+    // H4
+    'font-family-h4'                           => 'sans-serif',
+    'font-size-h4'                             => 24,
+    'font-weight-h4'                           => 'normal',
+    'font-style-h4'                            => 'normal',
+    'text-transform-h4'                        => 'none',
+    'line-height-h4'                           => (float) 1.6,
+    'letter-spacing-h4'                        => (float) 0,
+    'word-spacing-h4'                          => (float) 0,
+    'link-underline-h4'                        => 'never',
+    // H5
+    'font-family-h5'                           => 'sans-serif',
+    'font-size-h5'                             => 16,
+    'font-weight-h5'                           => 'bold',
+    'font-style-h5'                            => 'normal',
+    'text-transform-h5'                        => 'uppercase',
+    'line-height-h5'                           => (float) 1.6,
+    'letter-spacing-h5'                        => (float) 1,
+    'word-spacing-h5'                          => (float) 0,
+    'link-underline-h5'                        => 'never',
+    // H6
+    'font-family-h6'                           => 'sans-serif',
+    'font-size-h6'                             => 14,
+    'font-weight-h6'                           => 'normal',
+    'font-style-h6'                            => 'normal',
+    'text-transform-h6'                        => 'uppercase',
+    'line-height-h6'                           => (float) 1.6,
+    'letter-spacing-h6'                        => (float) 2,
+    'word-spacing-h6'                          => (float) 0,
+    'link-underline-h6'                        => 'never',
+    // Site Title
+    'font-family-site-title'                   => 'sans-serif',
+    'font-size-site-title'                     => 34,
+    'font-weight-site-title'                   => 'bold',
+    'font-style-site-title'                    => 'normal',
+    'text-transform-site-title'                => 'none',
+    'line-height-site-title'                   => (float) 1.2,
+    'letter-spacing-site-title'                => (float) 0,
+    'word-spacing-site-title'                  => (float) 0,
+    'link-underline-site-title'                => 'never',
+    // Tagline
+      'font-family-site-tagline'                 => 'bk-samuelsno5',
+    'font-size-site-tagline'                   => 12,
+    'font-weight-site-tagline'                 => 'normal',
+    'font-style-site-tagline'                  => 'normal',
+    'text-transform-site-tagline'              => 'uppercase',
+    'line-height-site-tagline'                 => (float) 1.6,
+    'letter-spacing-site-tagline'              => (float) 1,
+    'word-spacing-site-tagline'                => (float) 0,
+    'link-underline-site-tagline'              => 'never',
+    // Menu Items
+      'font-family-nav'                          => 'bk-samuelsno5',
+    'font-size-nav'                            => 14,
+    'font-weight-nav'                          => 'normal',
+    'font-style-nav'                           => 'normal',
+    'text-transform-nav'                       => 'none',
+    'line-height-nav'                          => (float) 1.4,
+    'letter-spacing-nav'                       => (float) 0,
+    'word-spacing-nav'                         => (float) 0,
+    'link-underline-nav'                       => 'never',
+    // Sub-Menu Items
+      'font-family-subnav'                       => 'bk-samuelsno5',
+    'font-size-subnav'                         => 13,
+    'font-weight-subnav'                       => 'normal',
+    'font-style-subnav'                        => 'normal',
+    'text-transform-subnav'                    => 'none',
+    'line-height-subnav'                       => (float) 1.4,
+    'letter-spacing-subnav'                    => (float) 0,
+    'word-spacing-subnav'                      => (float) 0,
+    'link-underline-subnav'                    => 'never',
+    'font-subnav-mobile'                       => 1,
+    // Current Item
+    'font-weight-nav-current-item'             => 'bold',
+    // Header Bar Text
+      'font-family-header-bar-text'              => 'bk-samuelsno5',
+    'font-size-header-bar-text'                => 13,
+    'font-weight-header-bar-text'              => 'normal',
+    'font-style-header-bar-text'               => 'normal',
+    'text-transform-header-bar-text'           => 'none',
+    'line-height-header-bar-text'              => (float) 1.6,
+    'letter-spacing-header-bar-text'           => (float) 0,
+    'word-spacing-header-bar-text'             => (float) 0,
+    'link-underline-header-bar-text'           => 'never',
+    // Header Bar Icons
+    'font-size-header-bar-icon'                => 20,
+    // Sidebar Widget Title
+      'font-family-widget-title'                 => 'bk-samuelsno5',
+    'font-size-widget-title'                   => 13,
+    'font-weight-widget-title'                 => 'bold',
+    'font-style-widget-title'                  => 'normal',
+    'text-transform-widget-title'              => 'none',
+    'line-height-widget-title'                 => (float) 1.6,
+    'letter-spacing-widget-title'              => (float) 0,
+    'word-spacing-widget-title'                => (float) 0,
+    'link-underline-widget-title'              => 'never',
+    // Sidebar Widget Body
+      'font-family-widget'                       => 'bk-samuelsno5',
+    'font-size-widget'                         => 13,
+    'font-weight-widget'                       => 'normal',
+    'font-style-widget'                        => 'normal',
+    'text-transform-widget'                    => 'none',
+    'line-height-widget'                       => (float) 1.6,
+    'letter-spacing-widget'                    => (float) 0,
+    'word-spacing-widget'                      => (float) 0,
+    'link-underline-widget'                    => 'never',
+    // Footer Text
+      'font-family-footer-text'                  => 'bk-samuelsno5',
+    'font-size-footer-text'                    => 13,
+    'font-weight-footer-text'                  => 'normal',
+    'font-style-footer-text'                   => 'normal',
+    'text-transform-footer-text'               => 'none',
+    'line-height-footer-text'                  => (float) 1.6,
+    'letter-spacing-footer-text'               => (float) 0,
+    'word-spacing-footer-text'                 => (float) 0,
+    'link-underline-footer-text'               => 'never',
+    // Footer Widget Title
+      'font-family-footer-widget-title'          => 'bk-samuelsno5',
+    'font-size-footer-widget-title'            => 13,
+    'font-weight-footer-widget-title'          => 'bold',
+    'font-style-footer-widget-title'           => 'normal',
+    'text-transform-footer-widget-title'       => 'none',
+    'line-height-footer-widget-title'          => (float) 1.6,
+    'letter-spacing-footer-widget-title'       => (float) 0,
+    'word-spacing-footer-widget-title'         => (float) 0,
+    'link-underline-footer-widget-title'       => 'never',
+    // Footer Widget Body
+      'font-family-footer-widget'                => 'bk-samuelsno5',
+    'font-size-footer-widget'                  => 13,
+    'font-weight-footer-widget'                => 'normal',
+    'font-style-footer-widget'                 => 'normal',
+    'text-transform-footer-widget'             => 'none',
+    'line-height-footer-widget'                => (float) 1.6,
+    'letter-spacing-footer-widget'             => (float) 0,
+    'word-spacing-footer-widget'               => (float) 0,
+    'link-underline-footer-widget'             => 'never',
+    // Footer Icons
+    'font-size-footer-icon'                    => 20,
   );
 
   return array_merge($defaults, $alc_defaults);
