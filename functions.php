@@ -13,15 +13,12 @@ wp_enqueue_script(
     true
 );
 
-function ttfmake_option_defaults() {
-  $defaults = array(
+function alc_default_settings($defaults) {
+  $alc_defaults = array(
     // Site Title & Tagline
     'hide-site-title'                          => 0,
     'hide-tagline'                             => 1,
     'color-site-title'                         => '#171717',
-
-    // Navigation
-    'navigation-mobile-label'                  => __( 'Menu', 'make' ),
 
     // General
     'general-layout'                           => 'full-width',
@@ -40,19 +37,6 @@ function ttfmake_option_defaults() {
     'background_position_x'                    => 'left',
     'background_attachment'                    => 'scroll',
     'background_size'                          => 'auto',
-
-    // Fonts
-    'font-site-title'                          => 'sans-serif',
-    'font-header'                              => 'sans-serif',
-    'font-body'                                => 'Open Sans',
-    'font-site-title-size'                     => 34,
-    'font-site-tagline-size'                   => 12,
-    'font-nav-size'                            => 22,
-    'font-size-subnav'                         => 16,
-    'font-header-size'                         => 50,
-    'font-widget-size'                         => 16,
-    'font-body-size'                           => 19,
-    'font-subset'                              => 'latin',
 
     // Colors
     'color-primary'                            => '#403391',
@@ -174,26 +158,10 @@ function ttfmake_option_defaults() {
     'footer-background-image'                  => 'http://agilelearningcenters.org/wp-content/uploads/2014/07/alc_smile_logo.png',
     'footer-background-repeat'                 => 'no-repeat',
     'footer-background-position'               => 'center',
-    'footer-background-size'                   => 'contain',
-    'footer-widget-areas'                      => 3,
-    'footer-text'                              => '',
-    'footer-show-social'                       => 1,
-    'footer-layout'                            => 1,
-
-    // Social
-    'social-facebook'                          => '',
-    'social-twitter'                           => '',
-    'social-google-plus-square'                => '',
-    'social-linkedin'                          => '',
-    'social-instagram'                         => '',
-    'social-flickr'                            => '',
-    'social-youtube'                           => '',
-    'social-vimeo-square'                      => '',
-    'social-pinterest'                         => '',
-    'social-email'                             => '',
-    'social-hide-rss'                          => 0,
-    'social-custom-rss'                        => '',
+    'footer-background-size'                   => 'contain'
   );
 
-  return apply_filters( 'ttfmake_setting_defaults', $defaults );
+  return array_merge($defaults, $alc_defaults);
 }
+
+add_filter( 'make_setting_defaults', 'alc_default_settings' );
