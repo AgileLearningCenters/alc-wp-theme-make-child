@@ -41,8 +41,9 @@ function alc_scripts(){
 
 add_action( 'wp_enqueue_scripts', 'alc_scripts' );
 
-
-/* add header option for sticky nav */
+/**
+ * Add header option for sticky nav
+ */
 function alc_add_layout_options($options){
     $options['header']['options']['header-sticky-nav'] = array(
         'setting' => array(
@@ -60,20 +61,21 @@ function alc_add_layout_options($options){
 
 add_filter('make_customizer_contentlayout_sections','alc_add_layout_options');
 
+/**
+ * Set up sticky nav resources and activate if
+ * theme mod is set to true
+ *
+ */
 function alc_sticky_nav_setup(){
-    // check if the sticky nav is active
-    $is_sticky = get_theme_mod( 'header-sticky-nav', ttfmake_get_default( 'header-sticky-nav' ) );
-    // Add specific CSS class by filter
     function alc_add_sticky_nav_class( $classes ) {
-        // add 'class-name' to the $classes array
         $classes[] = 'is-sticky';
-        // return the $classes array
         return $classes;
     }
     // add stick nav script if sticky nav is active
-    if ($is_sticky) {
+    if ( get_theme_mod( 'header-sticky-nav', ttfmake_get_default( 'header-sticky-nav' ) ) ) {
         wp_enqueue_script('sticky-nav-script');
         wp_enqueue_style('sticky-nav-style');
+        // Add class to body if sticky nav is activated
         add_filter( 'body_class', 'alc_add_sticky_nav_class' );
     }
 }
