@@ -44,19 +44,39 @@ add_action( 'wp_enqueue_scripts', 'alc_scripts' );
 /**
  * Add header option for sticky nav
  */
-function alc_add_layout_options($options){
-    $options['header']['options']['header-sticky-nav'] = array(
-        'setting' => array(
-            'sanitize_callback' => 'absint',
+function alc_add_layout_options($source){
+
+    $target = $source['header']['options'];
+
+    $inject = array(
+        'header-sticky-nav-heading' => array(
+            'control' => array(
+                'control_type' => 'TTFMAKE_Customize_Misc_Control',
+                'type'         => 'heading',
+                'label'        => 'Sticky Header',
+            ),
         ),
-        'control' => array(
-            # 'label' => __( 'Remove padding beneath header', 'make' ),
-            'label' => 'Use Sticky Nav',
-            'description' => 'When you scroll down the navigation bar will shrink and follow',
-            'type'  => 'checkbox',
-        ),
+        'header-sticky-nav' => array(
+            'setting' => array(
+                'sanitize_callback' => 'absint',
+            ),
+            'control' => array(
+                # 'label' => __( 'Remove padding beneath header', 'make' ),
+                'label' => 'Use Sticky Nav',
+                'description' => 'When you scroll down the navigation bar will shrink and follow',
+                'type'  => 'checkbox',
+            ),
+        )
     );
-    return $options;
+
+    // add options into slot at merge point (0 indexed)
+    $merge_point = 2;
+    $source['header']['options'] =
+        array_slice($target, 0, $merge_point, true) + 
+        $inject +
+        array_slice($target, $merge_point, count($target) - 1, true);
+
+    return $source;
 }
 
 add_filter('make_customizer_contentlayout_sections','alc_add_layout_options');
