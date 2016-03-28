@@ -5,13 +5,33 @@
  * Add your custom functions here.
  */
 
-wp_enqueue_script(
-    'child-script',
-    get_stylesheet_directory_uri() . '/js/child.js',
-    $script_dependencies,
-    TTFMAKE_VERSION,
-    true
-);
+
+/* add scripts */
+
+function alc_scripts(){
+
+    // add child script
+    wp_enqueue_script(
+        'child-script',
+        get_stylesheet_directory_uri() . '/js/child.js',
+        $script_dependencies,
+        TTFMAKE_VERSION,
+        true
+    );
+
+    // register sticky nav script
+    // only call if sticky nav is active
+    wp_register_script(
+        'sticky-nav-script',
+        get_stylesheet_directory_uri() . '/js/sticky-nav.js',
+        $script_dependencies,
+        TTFMAKE_VERSION,
+        true
+    );
+}
+
+add_action( 'wp_enqueue_scripts', 'alc_scripts' );
+
 
 /* add header option for sticky nav */
 function alc_add_layout_options($options){
@@ -31,21 +51,24 @@ function alc_add_layout_options($options){
 
 add_filter('make_customizer_contentlayout_sections','alc_add_layout_options');
 
-
-function alc_after_theme_setup(){
-
+function alc_sticky_nav_setup(){
+    // check if the sticky nav is active
+    $is_sticky = get_theme_mod( 'header-sticky-nav', ttfmake_get_default( 'header-sticky-nav' ) );
     // Add specific CSS class by filter
-    function alc_add_sticky_nav_class( $classes) {
+    function alc_add_sticky_nav_class( $classes ) {
         // add 'class-name' to the $classes array
-        $is_sticky = get_theme_mod( 'header-sticky-nav', ttfmake_get_default( 'header-sticky-nav' ) );
-        $classes[] = ($is_sticky) ? 'is-sticky' : 'not-sticky';
+        $classes[] = 'is-sticky';
         // return the $classes array
         return $classes;
     }
-    add_filter( 'body_class', 'alc_add_sticky_nav_class' );
+    // add stick nav script if sticky nav is active
+    if ($is_sticky) {
+        wp_enqueue_script('sticky-nav-script');
+        add_filter( 'body_class', 'alc_add_sticky_nav_class' );
+    }
 }
 
-add_action( 'after_setup_theme', 'alc_after_theme_setup', 11 );
+add_action( 'wp_head', 'alc_sticky_nav_setup' );
 
 function alc_custom_fonts($choices){
     $choices['bk-samuelsno5'] = array(
