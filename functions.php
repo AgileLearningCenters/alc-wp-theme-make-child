@@ -13,6 +13,40 @@ wp_enqueue_script(
     true
 );
 
+/* add header option for sticky nav */
+function alc_add_layout_options($options){
+    $options['header']['options']['header-sticky-nav'] = array(
+        'setting' => array(
+            'sanitize_callback' => 'absint',
+        ),
+        'control' => array(
+            # 'label' => __( 'Remove padding beneath header', 'make' ),
+            'label' => 'Use Sticky Nav',
+            'description' => 'When you scroll down the navigation bar will shrink and follow',
+            'type'  => 'checkbox',
+        ),
+    );
+    return $options;
+}
+
+add_filter('make_customizer_contentlayout_sections','alc_add_layout_options');
+
+
+function alc_after_theme_setup(){
+
+    // Add specific CSS class by filter
+    function alc_add_sticky_nav_class( $classes) {
+        // add 'class-name' to the $classes array
+        $is_sticky = get_theme_mod( 'header-sticky-nav', ttfmake_get_default( 'header-sticky-nav' ) );
+        $classes[] = ($is_sticky) ? 'is-sticky' : 'not-sticky';
+        // return the $classes array
+        return $classes;
+    }
+    add_filter( 'body_class', 'alc_add_sticky_nav_class' );
+}
+
+add_action( 'after_setup_theme', 'alc_after_theme_setup', 11 );
+
 function alc_custom_fonts($choices){
     $choices['bk-samuelsno5'] = array(
         'label' => __( 'Brooklyn Samuel Num 5', 'make' ),
@@ -25,6 +59,9 @@ add_filter('make_get_standard_fonts', 'alc_custom_fonts');
 
 function alc_default_settings($defaults) {
   $alc_defaults = array(
+    // Custom ALC options
+    'header-sticky-nav'                        => 1,
+
     // Site Title & Tagline
     'hide-site-title'                          => 0,
     'hide-tagline'                             => 1,
