@@ -28,6 +28,15 @@ function alc_scripts(){
         TTFMAKE_VERSION,
         true
     );
+
+    // register sticky nav style
+    // only call if sticky nav is active
+    wp_register_style(
+        'sticky-nav-style',
+        get_stylesheet_directory_uri() . '/css/sticky-nav.css',
+        'ttfmake-parent-style',
+        TTFMAKE_VERSION
+    );
 }
 
 add_action( 'wp_enqueue_scripts', 'alc_scripts' );
@@ -64,6 +73,7 @@ function alc_sticky_nav_setup(){
     // add stick nav script if sticky nav is active
     if ($is_sticky) {
         wp_enqueue_script('sticky-nav-script');
+        wp_enqueue_style('sticky-nav-style');
         add_filter( 'body_class', 'alc_add_sticky_nav_class' );
     }
 }
